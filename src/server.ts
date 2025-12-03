@@ -3,6 +3,7 @@ import express, { Request, Response } from "express";
 import config from "./config";
 import initDB, { pool } from "./config/db";
 import { userRoutes } from "./modules/user/user.route";
+import { authRoutes } from "./modules/auth/auth.routes";
 
 const app = express();
 const port = config.port;
@@ -19,6 +20,9 @@ app.get("/", (req: Request, res: Response) => {
 
 //post users:
 app.use("/users", userRoutes);
+
+app.use("/auth", authRoutes);
+
 // row express js code:
 // app.post("/users", async (req: Request, res: Response) => {
 //   const { name, email } = req.body;
